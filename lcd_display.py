@@ -1,10 +1,4 @@
 #!/usr/bin/python
-#
-# NewHaven Display (NHD-0208AZ-RN-YBW-33V) script
-# Pinouts may vary using a MCP23017 I2C GPIO Expander 
-# Pins are even for gpioa and odd for gpiob
-#
-
 
 import time
 import Adafruit_GPIO.MCP230xx as MCP
@@ -32,7 +26,7 @@ LCD_CURSORHOME = 0x03
 LCD_NEXTLINE = 0xC0
 LCD_CLEARSCRN = 0x01
 LCD_ENTRYMODE = 0x06
-LCD_8BITMODE = 0x38    #8bit/2line mode
+LCD_8BITMODE = 0x38  #8bit/2line mode
 LCD_SETCURSOR = 0x10
 LCD_BLINKCURSR = 0x0F 
 LCD_WAKEUP = 0x30
@@ -106,7 +100,36 @@ def main():
         command(LCD_NEXTLINE)
         write_string("GoodGood")
 
+#
+# Minimum setting to run display VDD and VSS
+# using default pin directions
+#
+def after_init():
+	time.sleep(0.01)
+	gpio.output(PIN_VDD, GPIO.HIGH)
+	gpio.output(PIN_VSS, GPIO.LOW)
+
+def display_info():
+	after_init()
+        command(LCD_CLEARSCRN)
+        write_string("Great!")
+        command(LCD_NEXTLINE)
+        write_string("GoodGood")
+
+def counter():
+	after_init()
+        command(LCD_CLEARSCRN)
+        write_string("Counting")
+        command(LCD_NEXTLINE)
+        write_string("time: ")
+	for x in range(0,10):
+		write_string(str(x))
+		command(0xc6)
+		time.sleep(0.5)
+
 def display_off():
         command(LCD_DISPLAYOFF)
 
 main()
+#display_info()
+#counter()
