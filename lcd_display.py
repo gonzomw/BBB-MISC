@@ -32,9 +32,9 @@ LCD_CURSORHOME = 0x03
 LCD_NEXTLINE = 0xC0
 LCD_CLEARSCRN = 0x01
 LCD_ENTRYMODE = 0x06
-LCD_8BITMODE = 0x38
+LCD_8BITMODE = 0x38    #8bit/2line mode
 LCD_SETCURSOR = 0x10
-LCD_BLINKCURSR = 0x0F #8bit/2line mode
+LCD_BLINKCURSR = 0x0F 
 LCD_WAKEUP = 0x30
 
 
@@ -81,7 +81,6 @@ def write_string(str):
 def main():
 	gpio.setup(PIN_VDD, GPIO.OUT)
 	gpio.setup(PIN_VSS, GPIO.OUT)
-	gpio.setup(PIN_RS, GPIO.OUT)
 	gpio.setup(PIN_RS, GPIO.OUT)
 	gpio.setup(PIN_RW, GPIO.OUT)
 	gpio.setup(PIN_ENA, GPIO.OUT)
