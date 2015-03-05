@@ -1,4 +1,9 @@
 #!/usr/bin/python
+#
+# NewHaven Display (NHD-0208AZ-RN-YBW-33V) script
+# Pinouts may vary using a MCP23017 I2C GPIO Expander 
+# Pins are even for gpioa and odd for gpiob
+#
 
 import time
 import Adafruit_GPIO.MCP230xx as MCP
@@ -133,3 +138,4 @@ def display_off():
 main()
 #display_info()
 #counter()
+#display_off()
